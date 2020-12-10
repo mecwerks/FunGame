@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: be0bbf97b6f017a49a10822e9b298ad6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - enemy: {instanceID: 0}
+  - GameOverMenu: {fileID: 3501408550174012775, guid: 0977ad706d0783943912f782df2a3e84,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
