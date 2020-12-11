@@ -11,8 +11,11 @@ public class protoplayer : MonoBehaviour
     public float MinPitch = -30f;
     public float MaxPitch = 60f;
 
+    public float attackCooldown = 0.25f;
+
     public Transform CamHolder;
     public Transform ProjectileSpawn;
+    public MeleeWeapon Weapon;
 
     public GameObject Projectile;
 
@@ -20,6 +23,7 @@ public class protoplayer : MonoBehaviour
     private CharacterController characterController;
     private Vector3 velocity = Vector3.zero;
     private float pitch = 0f;
+    private float attackTime = 0f;
 
     void Start()
     {
@@ -42,6 +46,8 @@ public class protoplayer : MonoBehaviour
             return;
         }
 
+        attackTime -= Time.deltaTime;
+
         if (characterController.isGrounded == true)
         {
             velocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -56,16 +62,26 @@ public class protoplayer : MonoBehaviour
 
         velocity.y -= Gravity * Time.deltaTime; // apply gravity
         characterController.Move(velocity * Time.deltaTime); // move the player
-        pitch -= Input.GetAxisRaw("Mouse Y")* TurnSpeed; // adjust pitch
+        pitch -= Input.GetAxisRaw("Mouse Y") * TurnSpeed; // adjust pitch
         pitch = Mathf.Clamp(pitch, MinPitch, MaxPitch); // clamp vertical rotation
         CamHolder.eulerAngles = new Vector3(pitch, CamHolder.eulerAngles.y, CamHolder.eulerAngles.z); // set rotation on cam holder
         transform.Rotate(new Vector3(0, Input.GetAxisRaw("Mouse X"), 0) * TurnSpeed); // rotate the player horizontally
 
-        // firingz
+        // firing
+        if (attackTime > 0)
+            return; // only attack after cooldown
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             // check if projectile is valid
             Instantiate(Projectile, ProjectileSpawn.position, ProjectileSpawn.rotation);
+            attackTime = attackCooldown; // set cooldown
         }
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            Weapon.Attack(); // "swing" melee weapon
+            attackTime = attackCooldown; // set cooldown
+        }
+
     }
 }
