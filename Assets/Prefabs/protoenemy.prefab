@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1750473131}
   - component: {fileID: 1750473132}
   - component: {fileID: 1750473137}
+  - component: {fileID: 474756282}
   m_Layer: 0
   m_Name: protoenemy
   m_TagString: Enemy
@@ -247,10 +248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30d280b4ed1e49409fcb455d9f7ed25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackSpeed: 5
+  AttackSpeed: 1
+  AttackSpeed2: 6.5
   ProjectileSpawn: {fileID: 1536719636}
   Projectile: {fileID: 82762498749810492, guid: 30d95f0902547a9438ef58cadd3c611c,
     type: 3}
+  FireObject: {fileID: 1985409605087324690, guid: 8b3f190029d8bf145ba86d8ff7e4d680,
+    type: 3}
+  target: {fileID: 0}
 --- !u!114 &1750473137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,5 +268,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  destroyOnDeath: 1
+  maxHealth: 100
+  destroyOnDeath: 0
+--- !u!54 &474756282
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5126110703783351837}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
