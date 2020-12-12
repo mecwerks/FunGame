@@ -10,12 +10,14 @@ public class PlayerAttack : MonoBehaviour
     public MeleeWeapon Weapon;
     public float attackCooldown = 0.5f;
 
+    private PlayerMovement movement;
     private Damageable dmgable;
 
     private float attackTime = 0;
 
     private void Start()
     {
+        movement = GetComponent<PlayerMovement>();
         dmgable = GetComponent<Damageable>();
     }
 
@@ -41,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
             // need to make this go towards where the camera is pointing
             Instantiate(Projectile, ProjectilePosition.position, ProjectilePosition.rotation);
             attackTime = attackCooldown;
+            movement.StrafeMode();
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
