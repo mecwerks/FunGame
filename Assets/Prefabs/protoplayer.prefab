@@ -386,6 +386,7 @@ MonoBehaviour:
   Speed: 10
   JumpVelocity: 8
   Gravity: 20
+  TurnSmoothTime: 0.1
 --- !u!114 &1407049847
 MonoBehaviour:
   m_ObjectHideFlags: 0

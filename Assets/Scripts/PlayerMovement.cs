@@ -24,29 +24,34 @@ public class PlayerMovement : MonoBehaviour
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputY = Input.GetAxisRaw("Vertical");
 
+        Vector3 moveDir = new Vector3(inputX, 0f, inputY);
+        float yVel = velocity.y;
+
+        if (moveDir.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, TurnSmoothTime);
+
+            transform.rotation = Quaternion.Euler(0f, angle, 0f); // use smoothed angle  here
+
+            velocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            velocity *= Speed;
+        }
+        else
+        {
+            velocity = Vector3.zero;
+        }
+
         if (controller.isGrounded)
         {
-            Vector3 moveDir = new Vector3(inputX, 0f, inputY);
-
-            if (moveDir.magnitude >= 0.1f)
-            {
-                float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
-                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, TurnSmoothTime);
-
-                transform.rotation = Quaternion.Euler(0f, angle, 0f); // use smoothed angle  here
-
-                velocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                velocity *= Speed;
-            }
-            else
-            {
-                velocity = Vector3.zero;
-            }
-
             if (Input.GetKey(KeyCode.Space))
             {
                 velocity.y = JumpVelocity;
             }
+        }
+        else
+        {
+            velocity.y = yVel; // preserve y velocity if in the air
         }
 
         velocity.y -= Gravity * Time.deltaTime;
