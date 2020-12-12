@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             velocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             velocity *= Speed;
         }
-        else
+        else if (controller.isGrounded)
         {
             velocity = Vector3.zero;
         }

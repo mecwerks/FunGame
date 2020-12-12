@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 1092550731}
   - component: {fileID: 3395183798805965801}
   - component: {fileID: 1407049847}
+  - component: {fileID: 1408712214}
   m_Layer: 0
   m_Name: protoplayer
   m_TagString: Player
@@ -387,6 +388,7 @@ MonoBehaviour:
   JumpVelocity: 8
   Gravity: 20
   TurnSmoothTime: 0.1
+  StrafeAimTime: 1
 --- !u!114 &1407049847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,3 +403,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   destroyOnDeath: 0
+--- !u!114 &1408712214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987588878862291381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6613e69cc88d6e4f957e9f2ce940e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cam: {fileID: 0}
+  Projectile: {fileID: 82762498749810492, guid: 30d95f0902547a9438ef58cadd3c611c,
+    type: 3}
+  ProjectilePosition: {fileID: 2147147670}
+  Weapon: {fileID: 1015044650}
+  attackCooldown: 0.5
