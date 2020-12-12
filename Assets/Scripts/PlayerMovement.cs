@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Transform Cam;
     public float Speed = 10f;
+    public float RunSpeed = 15f;
     public float JumpVelocity = 8f;
     public float Gravity = 20f;
     public float TurnSmoothTime = 0.1f;
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             velocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            velocity *= Speed;
+            velocity *= Input.GetKey(KeyCode.LeftShift) ? RunSpeed : Speed; // left shift for running
         }
         else if (controller.isGrounded)
         {
