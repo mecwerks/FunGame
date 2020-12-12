@@ -195,9 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 3.8, z: -11.01}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -313,7 +313,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66091702}
-  m_LocalRotation: {x: 0.12947229, y: 0.000000017061563, z: -0.0000000022277502, w: 0.99158305}
+  m_LocalRotation: {x: 0.12947229, y: -0.000000017061552, z: 0.0000000022277489, w: 0.99158305}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 3.8, z: -11.01}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -851,7 +851,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745613276}
-  m_LocalRotation: {x: 0.16540602, y: 0.000000029593375, z: -0.0000000049632884, w: 0.9862256}
+  m_LocalRotation: {x: 0.16540602, y: 0.000000029593378, z: -0.000000004963289, w: 0.9862256}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1298,6 +1298,30 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248083405}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1408712209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6987588878862291381, guid: fa877f15b4e693c4f92d544edb474a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7358491170834542999}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1408712214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408712209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6613e69cc88d6e4f957e9f2ce940e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cam: {fileID: 1147821546}
+  Projectile: {fileID: 82762498749810492, guid: 30d95f0902547a9438ef58cadd3c611c,
+    type: 3}
+  ProjectilePosition: {fileID: 2111568794}
+  Weapon: {fileID: 1888069731}
+  attackCooldown: 0.5
 --- !u!1 &1418481616
 GameObject:
   m_ObjectHideFlags: 3
@@ -1372,9 +1396,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BindingMode: 4
   m_FollowOffset: {x: 0, y: 3.8, z: -11.01}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1645,6 +1669,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548064399}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1888069731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1015044650, guid: fa877f15b4e693c4f92d544edb474a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7358491170834542999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb0885f5dcf6ef43b2001e53fa14fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2093861550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1728,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2111568794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2147147670, guid: fa877f15b4e693c4f92d544edb474a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7358491170834542999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &99241649976516585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1850,7 +1892,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7358491170834542999}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1408712209}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}

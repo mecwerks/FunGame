@@ -13,6 +13,11 @@ public class GameManager : Singleton<GameManager>
 
     protected GameManager() { } // Prevent non-singleton constructor use.
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     // Update is called once per frame
     private void Update()
     {
