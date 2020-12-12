@@ -33,6 +33,11 @@ public class protoenemy : MonoBehaviour
             return;
         }
 
+        Vector3 targetPos = target.position;
+
+        targetPos.y = transform.position.y;
+        transform.LookAt(targetPos);
+
         if (dmgable.health <= dmgable.maxHealth / 2)
         {
             secondPhase = true;
