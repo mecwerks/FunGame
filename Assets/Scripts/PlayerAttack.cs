@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : NetworkBehaviour
 {
     public Transform Cam;
     public GameObject Projectile;
@@ -12,21 +13,27 @@ public class PlayerAttack : MonoBehaviour
 
     private PlayerMovement movement;
     private Damageable dmgable;
-
     private float attackTime = 0;
 
     private void Start()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         movement = GetComponent<PlayerMovement>();
         dmgable = GetComponent<Damageable>();
     }
 
     private void Update()
     {
-        attackTime -= Time.deltaTime;
-
-        if (GameManager.Instance.GameOver)
+        if (!isLocalPlayer)
+        {
             return;
+        }
+
+        attackTime -= Time.deltaTime;
 
         if (dmgable.health <= 0)
         {
@@ -40,16 +47,30 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            // need to make this go towards where the camera is pointing
-            Instantiate(Projectile, ProjectilePosition.position, ProjectilePosition.rotation);
-            attackTime = AttackCooldown;
+            FireProjectile();
             movement.StrafeMode();
+            attackTime = AttackCooldown;
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            Weapon.Attack();
+            Stab();
             attackTime = AttackCooldown;
         }
+    }
 
+    [Command]
+    void FireProjectile()
+    {
+        // need to make this go towards where the camera is pointing
+        GameObject go = Instantiate(Projectile, ProjectilePosition.position, ProjectilePosition.rotation);
+        NetworkServer.Spawn(go);
+        attackTime = AttackCooldown;
+    }
+
+    [Command]
+    void Stab()
+    {
+        Weapon.Attack();
+        attackTime = AttackCooldown;
     }
 }

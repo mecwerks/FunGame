@@ -311,6 +311,9 @@ GameObject:
   - component: {fileID: 3395183798805965801}
   - component: {fileID: 1407049847}
   - component: {fileID: 1408712214}
+  - component: {fileID: -7744356962133105482}
+  - component: {fileID: -764535835507767534}
+  - component: {fileID: -5050276608520418034}
   m_Layer: 0
   m_Name: protoplayer
   m_TagString: Player
@@ -414,8 +417,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5606b74703395874cba24bfda2cb073c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   Cam: {fileID: 0}
   Speed: 10
+  RunSpeed: 15
   JumpVelocity: 8
   Gravity: 20
   TurnSmoothTime: 0.1
@@ -446,9 +452,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6613e69cc88d6e4f957e9f2ce940e36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   Cam: {fileID: 0}
   Projectile: {fileID: 82762498749810492, guid: 30d95f0902547a9438ef58cadd3c611c,
     type: 3}
   ProjectilePosition: {fileID: 2147147670}
   Weapon: {fileID: 1015044650}
   AttackCooldown: 0.5
+--- !u!114 &-7744356962133105482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987588878862291381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &-764535835507767534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987588878862291381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01
+--- !u!114 &-5050276608520418034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987588878862291381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f53559913ea3841b6249bfaf6262b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  CameraLookAtTarget: {fileID: 1737300685}

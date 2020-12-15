@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public Transform Cam;
     public float Speed = 10f;
@@ -19,11 +20,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         controller = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (strafeAimTimer > 0)
             strafeAimTimer -= Time.deltaTime;
 

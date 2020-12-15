@@ -1,56 +1,49 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Scripting;
+
+//[assembly: AlwaysLinkAssembly]
 
 public class GameManager : Singleton<GameManager>
 {
-    public Damageable player;
-    public Damageable enemy;
-    public GameObject GameOverMenu;
-
-    public bool GameOver { get; private set; } = false;
+    private Transform MainCam;
+    private Cinemachine.CinemachineFreeLook FreeLookCam;
+    private bool initialized = false;
 
     protected GameManager() { } // Prevent non-singleton constructor use.
 
-    private void Start()
+    [RuntimeInitializeOnLoadMethod]
+    [SuppressMessage("Code Quality", "IDE0051")]
+    static void Initialize()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (!GameOver)
+        // the first call to Instance, causes a new gameobject to be created
+        if (Instance.initialized)
         {
-            if (player && player.health <= 0)
-            {
-                EndGame(false);
-            }
-            else if (enemy && enemy.health <= 0)
-            {
-                EndGame(true);
-            }
-
+            return;
         }
+
+        // Need to load these as resources, otherwise unity omits them from the build
+        GameObject thirdPersonCamPrefab = Resources.Load<GameObject>("Third Person Camera");
+        GameObject netObjPrefab = Resources.Load<GameObject>("NetworkObject");
+        GameObject tpcObj = Instantiate(thirdPersonCamPrefab, new Vector3(0, 10f, 0), Quaternion.identity);
+
+        Instantiate(netObjPrefab, Instance.transform);
+        Instance.MainCam = FindObjectOfType<Camera>().transform;
+        Instance.FreeLookCam = tpcObj.GetComponent<Cinemachine.CinemachineFreeLook>();
+        Instance.gameObject.AddComponent<Consolation.Console>();
+
+        Instance.initialized = true;
     }
 
-    void EndGame(bool win)
+    public void SetupLocalPlayer(GameObject localPlayer, Transform lookAtTarget)
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        GameObject menu = Instantiate(GameOverMenu);
-        GameOverMenu goMenu = menu.GetComponent<GameOverMenu>();
-
-        if (goMenu)
-            goMenu.SetStatus(win);
-
-        GameOver = true;
-    }
-
-    public void RestartGame()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-
-        SceneManager.LoadScene(scene.name);
+        localPlayer.GetComponent<PlayerMovement>().Cam = MainCam;
+        localPlayer.GetComponent<PlayerAttack>().Cam = MainCam;
+        FreeLookCam.LookAt = lookAtTarget;
+        FreeLookCam.Follow = localPlayer.transform;
     }
 }

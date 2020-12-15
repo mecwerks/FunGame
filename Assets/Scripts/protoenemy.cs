@@ -24,9 +24,6 @@ public class protoenemy : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.GameOver)
-            return;
-
         if (dmgable.health <= 0)
         { 
             // dead

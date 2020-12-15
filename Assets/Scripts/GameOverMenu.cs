@@ -20,7 +20,6 @@ public class GameOverMenu : MonoBehaviour
 
     public void OnRetry()
     {
-        manager.RestartGame();
     }
 
     public void OnQuit()

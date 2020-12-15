@@ -4,10 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - player: {instanceID: 0}
-  - enemy: {instanceID: 0}
-  - GameOverMenu: {fileID: 3501408550174012775, guid: 0977ad706d0783943912f782df2a3e84,
+  - ThirdPersonCameraPrefab: {fileID: 2412809395047924720, guid: dd40d3f5eaccc8348bba5e398567ba6b,
       type: 3}
+  - NetworkObjectPrefab: {fileID: 1440631703110195808, guid: aa9e022920fc8094caa3db0f270c8408,
+      type: 3}
+  - GameOverMenuPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
