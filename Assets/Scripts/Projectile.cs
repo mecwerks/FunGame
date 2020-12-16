@@ -10,21 +10,14 @@ public class Projectile : NetworkBehaviour
 
     private Rigidbody m_Rigidbody;
 
-    void Awake()
-    {
-        if (!isServer)
-        {
-            return;
-        }
-        m_Rigidbody = GetComponent<Rigidbody>();
-    }
-
     void Start()
     {
         if (!isServer)
         {
             return;
         }
+         m_Rigidbody = GetComponent<Rigidbody>();
+         
         m_Rigidbody.AddForce(m_Rigidbody.transform.forward * m_Speed);
         Destroy(gameObject, m_Lifespan);
     }

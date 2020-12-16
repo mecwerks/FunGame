@@ -10,8 +10,11 @@ using UnityEngine.Scripting;
 
 public class GameManager : Singleton<GameManager>
 {
+    public GameObject IngameMenuPrefab;
     public Cinemachine.CinemachineFreeLook FreeLookCam;
     private bool initialized = false;
+
+    private GameObject IngameMenuObject;
 
     protected GameManager() { } // Prevent non-singleton constructor use.
 
@@ -25,7 +28,17 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Returning again to the scene: " + __PreloadScene.sceneToLoad);
             SceneManager.LoadScene(__PreloadScene.sceneToLoad);
         }
+        else
 #endif
+        {
+            SceneManager.LoadScene(1);
+        }
+
+        // load menus
+        // disable all but active one
+        // handle scene switching and menu swapping
+        IngameMenuObject = Instantiate(IngameMenuPrefab, Vector3.zero, Quaternion.identity);
+        DontDestroyOnLoad(IngameMenuObject);
     }
 
     public void SetupLocalPlayer(GameObject localPlayer, Transform lookAtTarget)
@@ -35,5 +48,7 @@ public class GameManager : Singleton<GameManager>
         localPlayer.GetComponent<PlayerAttack>().Cam = camTransform;
         FreeLookCam.LookAt = lookAtTarget;
         FreeLookCam.Follow = localPlayer.transform;
+
+        IngameMenuObject.GetComponent<IngameMenu>().AssignLocalPlayer(localPlayer.GetComponent<Damageable>());
     }
 }
