@@ -10,39 +10,29 @@ using UnityEngine.Scripting;
 
 public class GameManager : Singleton<GameManager>
 {
-    private Transform MainCam;
-    private Cinemachine.CinemachineFreeLook FreeLookCam;
+    public Cinemachine.CinemachineFreeLook FreeLookCam;
     private bool initialized = false;
 
     protected GameManager() { } // Prevent non-singleton constructor use.
 
-    [RuntimeInitializeOnLoadMethod]
-    [SuppressMessage("Code Quality", "IDE0051")]
-    static void Initialize()
+    private void Awake()
     {
-        // the first call to Instance, causes a new gameobject to be created
-        if (Instance.initialized)
+        gameObject.AddComponent<Consolation.Console>();
+
+#if UNITY_EDITOR 
+        if (__PreloadScene.sceneToLoad > 0)
         {
-            return;
+            Debug.Log("Returning again to the scene: " + __PreloadScene.sceneToLoad);
+            SceneManager.LoadScene(__PreloadScene.sceneToLoad);
         }
-
-        // Need to load these as resources, otherwise unity omits them from the build
-        GameObject thirdPersonCamPrefab = Resources.Load<GameObject>("Third Person Camera");
-        GameObject netObjPrefab = Resources.Load<GameObject>("NetworkObject");
-        GameObject tpcObj = Instantiate(thirdPersonCamPrefab, new Vector3(0, 10f, 0), Quaternion.identity);
-
-        Instantiate(netObjPrefab, Instance.transform);
-        Instance.MainCam = FindObjectOfType<Camera>().transform;
-        Instance.FreeLookCam = tpcObj.GetComponent<Cinemachine.CinemachineFreeLook>();
-        Instance.gameObject.AddComponent<Consolation.Console>();
-
-        Instance.initialized = true;
+#endif
     }
 
     public void SetupLocalPlayer(GameObject localPlayer, Transform lookAtTarget)
     {
-        localPlayer.GetComponent<PlayerMovement>().Cam = MainCam;
-        localPlayer.GetComponent<PlayerAttack>().Cam = MainCam;
+        Transform camTransform = FindObjectOfType<Camera>().transform;
+        localPlayer.GetComponent<PlayerMovement>().Cam = camTransform;
+        localPlayer.GetComponent<PlayerAttack>().Cam = camTransform;
         FreeLookCam.LookAt = lookAtTarget;
         FreeLookCam.Follow = localPlayer.transform;
     }

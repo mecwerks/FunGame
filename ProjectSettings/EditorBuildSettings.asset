@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/__preload.unity
+    guid: 05fc5292c0e4a1f40a35799a0f1397bc
+  - enabled: 1
     path: Assets/Scenes/Overworld.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/ForcePack.unity
-    guid: 59e7973ac7bc7f2409347f6487ca0c38
   m_configObjects: {}
