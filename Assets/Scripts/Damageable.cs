@@ -8,7 +8,10 @@ public class Damageable : NetworkBehaviour
     public int maxHealth = 100;
     public bool destroyOnDeath = true;
 
-    public int health { get; private set; }
+    [SyncVar]
+    private int _health;
+
+    public int health { get => _health; }
 
     private void Start()
     {
@@ -17,7 +20,7 @@ public class Damageable : NetworkBehaviour
             return;
         }
 
-        health = maxHealth;
+        _health = maxHealth;
     }
 
     public void Damage(int amount)
@@ -27,7 +30,7 @@ public class Damageable : NetworkBehaviour
             return;
         }
 
-        health -= amount;
+        _health -= amount;
 
         if (health <= 0)
         {

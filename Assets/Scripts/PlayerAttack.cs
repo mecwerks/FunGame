@@ -13,6 +13,7 @@ public class PlayerAttack : NetworkBehaviour
 
     private PlayerMovement movement;
     private Damageable dmgable;
+    [SyncVar]
     private float attackTime = 0;
 
     private void Start()
@@ -49,12 +50,10 @@ public class PlayerAttack : NetworkBehaviour
         {
             FireProjectile();
             movement.StrafeMode();
-            attackTime = AttackCooldown;
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Stab();
-            attackTime = AttackCooldown;
         }
     }
 

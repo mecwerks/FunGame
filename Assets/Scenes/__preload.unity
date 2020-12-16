@@ -262,7 +262,7 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   showDebugMessages: 0
-  serverTickRate: 30
+  serverTickRate: 64
   offlineScene: 
   onlineScene: 
   transport: {fileID: 4854043597920898206}

@@ -50,5 +50,6 @@ public class GameManager : Singleton<GameManager>
         FreeLookCam.Follow = localPlayer.transform;
 
         IngameMenuObject.GetComponent<IngameMenu>().AssignLocalPlayer(localPlayer.GetComponent<Damageable>());
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
