@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverMenu : MonoBehaviour
-{
+public class GameOverMenu : MonoBehaviour {
     public TMPro.TextMeshProUGUI statusText;
 
     GameManager manager;
 
-    private void Start()
-    {
+    private void Start() {
         manager = FindObjectsOfType<GameManager>()[0];
     }
 
-    public void SetStatus(bool win)
-    {
+    public void SetStatus(bool win) {
         statusText.text = win ? "You Win!" : "Game Over";
     }
 
-    public void OnRetry()
-    {
+    public void OnRetry() {
     }
 
-    public void OnQuit()
-    {
+    public void OnQuit() {
         Application.Quit();
     }
 }

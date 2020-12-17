@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Consolation
-{
+namespace Consolation {
     /// <summary>
     /// A console to display Unity's debug logs in-game.
     ///
     /// Version: 1.1.2
     /// </summary>
-    class Console : MonoBehaviour
-    {
+    class Console : MonoBehaviour {
         #region Inspector Settings
 
         /// <summary>
@@ -103,20 +101,16 @@ namespace Consolation
 
         #region MonoBehaviour Messages
 
-        void OnDisable()
-        {
+        void OnDisable() {
             Application.logMessageReceivedThreaded -= HandleLogThreaded;
         }
 
-        void OnEnable()
-        {
+        void OnEnable() {
             Application.logMessageReceivedThreaded += HandleLogThreaded;
         }
 
-        void OnGUI()
-        {
-            if (!isVisible)
-            {
+        void OnGUI() {
+            if (!isVisible) {
                 return;
             }
 
@@ -131,30 +125,25 @@ namespace Consolation
             windowY = newWindowRect.y;
         }
 
-        void Start()
-        {
-            if (openOnStart)
-            {
+        void Start() {
+            if (openOnStart) {
                 isVisible = true;
             }
         }
 
-        void Update()
-        {
+        void Update() {
             UpdateQueuedLogs();
 
             float curTime = Time.realtimeSinceStartup;
 
-            if (Input.GetKeyDown(toggleKey))
-            {
+            if (Input.GetKeyDown(toggleKey)) {
                 isVisible = !isVisible;
             }
 
             if (shakeToOpen &&
                 Input.acceleration.sqrMagnitude > shakeAcceleration &&
                 curTime - lastToggleTime >= toggleThresholdSeconds &&
-                (!shakeRequiresTouch || Input.touchCount > 2))
-            {
+                (!shakeRequiresTouch || Input.touchCount > 2)) {
                 isVisible = !isVisible;
                 lastToggleTime = curTime;
             }
@@ -162,24 +151,19 @@ namespace Consolation
 
         #endregion
 
-        void DrawLog(Log log, GUIStyle logStyle, GUIStyle badgeStyle)
-        {
+        void DrawLog(Log log, GUIStyle logStyle, GUIStyle badgeStyle) {
             GUI.contentColor = logTypeColors[log.type];
 
-            if (isCollapsed)
-            {
+            if (isCollapsed) {
                 // Draw collapsed log with badge indicating count.
                 GUILayout.BeginHorizontal();
                 GUILayout.Label(log.GetTruncatedMessage(), logStyle);
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(log.count.ToString(), GUI.skin.box);
                 GUILayout.EndHorizontal();
-            }
-            else
-            {
+            } else {
                 // Draw expanded log.
-                for (var i = 0; i < log.count; i += 1)
-                {
+                for (var i = 0; i < log.count; i += 1) {
                     GUILayout.Label(log.GetTruncatedMessage(), logStyle);
                 }
             }
@@ -187,8 +171,7 @@ namespace Consolation
             GUI.contentColor = Color.white;
         }
 
-        void DrawLogList()
-        {
+        void DrawLogList() {
             GUIStyle badgeStyle = GUI.skin.box;
             badgeStyle.fontSize = logFontSize;
 
@@ -202,8 +185,7 @@ namespace Consolation
 
             var visibleLogs = logs.Where(IsLogVisible);
 
-            foreach (Log log in visibleLogs)
-            {
+            foreach (Log log in visibleLogs) {
                 DrawLog(log, logStyle, badgeStyle);
             }
 
@@ -213,23 +195,19 @@ namespace Consolation
             var outerScrollRect = GUILayoutUtility.GetLastRect();
 
             // If we're scrolled to bottom now, guarantee that it continues to be in next cycle.
-            if (Event.current.type == EventType.Repaint && IsScrolledToBottom(innerScrollRect, outerScrollRect))
-            {
+            if (Event.current.type == EventType.Repaint && IsScrolledToBottom(innerScrollRect, outerScrollRect)) {
                 ScrollToBottom();
             }
         }
 
-        void DrawToolbar()
-        {
+        void DrawToolbar() {
             GUILayout.BeginHorizontal();
 
-            if (GUILayout.Button(clearLabel))
-            {
+            if (GUILayout.Button(clearLabel)) {
                 logs.Clear();
             }
 
-            foreach (LogType logType in Enum.GetValues(typeof(LogType)))
-            {
+            foreach (LogType logType in Enum.GetValues(typeof(LogType))) {
                 var currentState = logTypeFilters[logType];
                 var label = logType.ToString();
                 logTypeFilters[logType] = GUILayout.Toggle(currentState, label, GUILayout.ExpandWidth(false));
@@ -241,8 +219,7 @@ namespace Consolation
             GUILayout.EndHorizontal();
         }
 
-        void DrawWindow(int windowID)
-        {
+        void DrawWindow(int windowID) {
             DrawLogList();
             DrawToolbar();
 
@@ -250,29 +227,23 @@ namespace Consolation
             GUI.DragWindow(titleBarRect);
         }
 
-        Log? GetLastLog()
-        {
-            if (logs.Count == 0)
-            {
+        Log? GetLastLog() {
+            if (logs.Count == 0) {
                 return null;
             }
 
             return logs.Last();
         }
 
-        void UpdateQueuedLogs()
-        {
+        void UpdateQueuedLogs() {
             Log log;
-            while (queuedLogs.TryDequeue(out log))
-            {
+            while (queuedLogs.TryDequeue(out log)) {
                 ProcessLogItem(log);
             }
         }
 
-        void HandleLogThreaded(string message, string stackTrace, LogType type)
-        {
-            var log = new Log
-            {
+        void HandleLogThreaded(string message, string stackTrace, LogType type) {
+            var log = new Log {
                 count = 1,
                 message = message,
                 stackTrace = stackTrace,
@@ -284,39 +255,32 @@ namespace Consolation
             queuedLogs.Enqueue(log);
         }
 
-        void ProcessLogItem(Log log)
-        {
+        void ProcessLogItem(Log log) {
             var lastLog = GetLastLog();
             var isDuplicateOfLastLog = lastLog.HasValue && log.Equals(lastLog.Value);
 
-            if (isDuplicateOfLastLog)
-            {
+            if (isDuplicateOfLastLog) {
                 // Replace previous log with incremented count instead of adding a new one.
                 log.count = lastLog.Value.count + 1;
                 logs[logs.Count - 1] = log;
-            }
-            else
-            {
+            } else {
                 logs.Add(log);
                 TrimExcessLogs();
             }
         }
 
-        bool IsLogVisible(Log log)
-        {
+        bool IsLogVisible(Log log) {
             return logTypeFilters[log.type];
         }
 
-        bool IsScrolledToBottom(Rect innerScrollRect, Rect outerScrollRect)
-        {
+        bool IsScrolledToBottom(Rect innerScrollRect, Rect outerScrollRect) {
             var innerScrollHeight = innerScrollRect.height;
 
             // Take into account extra padding added to the scroll container.
             var outerScrollHeight = outerScrollRect.height - GUI.skin.box.padding.vertical;
 
             // If contents of scroll view haven't exceeded outer container, treat it as scrolled to bottom.
-            if (outerScrollHeight > innerScrollHeight)
-            {
+            if (outerScrollHeight > innerScrollHeight) {
                 return true;
             }
 
@@ -324,22 +288,18 @@ namespace Consolation
             return Mathf.Approximately(innerScrollHeight, scrollPosition.y + outerScrollHeight);
         }
 
-        void ScrollToBottom()
-        {
+        void ScrollToBottom() {
             scrollPosition = new Vector2(0, Int32.MaxValue);
         }
 
-        void TrimExcessLogs()
-        {
-            if (!restrictLogCount)
-            {
+        void TrimExcessLogs() {
+            if (!restrictLogCount) {
                 return;
             }
 
             var amountToRemove = logs.Count - maxLogCount;
 
-            if (amountToRemove <= 0)
-            {
+            if (amountToRemove <= 0) {
                 return;
             }
 
@@ -350,8 +310,7 @@ namespace Consolation
     /// <summary>
     /// A basic container for log details.
     /// </summary>
-    struct Log
-    {
+    struct Log {
         public int count;
         public string message;
         public string stackTrace;
@@ -363,20 +322,17 @@ namespace Consolation
         /// </summary>
         const int maxMessageLength = 16382;
 
-        public bool Equals(Log log)
-        {
+        public bool Equals(Log log) {
             return message == log.message && stackTrace == log.stackTrace && type == log.type;
         }
 
         /// <summary>
         /// Return a truncated message if it exceeds the max message length.
         /// </summary>
-        public string GetTruncatedMessage()
-        {
+        public string GetTruncatedMessage() {
             string msg = type == LogType.Exception ? message + '\n' + stackTrace : message;
 
-            if (string.IsNullOrEmpty(msg))
-            {
+            if (string.IsNullOrEmpty(msg)) {
                 return msg;
             }
 
@@ -392,25 +348,19 @@ namespace Consolation
     /// It's a bit slow (as it uses locks), and only provides a small subset of the interface
     /// Overall, the implementation is intended to be simple & robust
     /// </remarks>
-    class ConcurrentQueue<T>
-    {
+    class ConcurrentQueue<T> {
         readonly Queue<T> queue = new Queue<T>();
         readonly object queueLock = new object();
 
-        public void Enqueue(T item)
-        {
-            lock (queueLock)
-            {
+        public void Enqueue(T item) {
+            lock (queueLock) {
                 queue.Enqueue(item);
             }
         }
 
-        public bool TryDequeue(out T result)
-        {
-            lock (queueLock)
-            {
-                if (queue.Count == 0)
-                {
+        public bool TryDequeue(out T result) {
+            lock (queueLock) {
+                if (queue.Count == 0) {
                     result = default(T);
                     return false;
                 }

@@ -7,8 +7,7 @@ using UnityEngine;
 using System.Collections;
 
 // Makes objects float up & down while gently spinning.
-public class BouncySpin : MonoBehaviour
-{
+public class BouncySpin : MonoBehaviour {
     // User Inputs
     public float degreesPerSecond = 15.0f;
     public float amplitude = 0.5f;
@@ -19,15 +18,13 @@ public class BouncySpin : MonoBehaviour
     Vector3 tempPos = new Vector3();
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         // Store the starting position & rotation of the object
         posOffset = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // Spin object around Y-Axis
         transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
 

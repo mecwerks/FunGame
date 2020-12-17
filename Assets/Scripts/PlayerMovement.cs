@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : NetworkBehaviour
-{
+public class PlayerMovement : NetworkBehaviour {
     public Transform Cam;
     public float Speed = 10f;
     public float RunSpeed = 15f;
@@ -18,20 +17,16 @@ public class PlayerMovement : NetworkBehaviour
     float strafeAimTimer = 0;
     float turnSmoothVelocity; // for tracking turning dampening
 
-    private void Start()
-    {
-        if (!isLocalPlayer)
-        {
+    private void Start() {
+        if (!isLocalPlayer) {
             return;
         }
 
         controller = GetComponent<CharacterController>();
     }
 
-    private void Update()
-    {
-        if (!isLocalPlayer)
-        {
+    private void Update() {
+        if (!isLocalPlayer) {
             return;
         }
 
@@ -41,39 +36,30 @@ public class PlayerMovement : NetworkBehaviour
         Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         float yVel = velocity.y; // save vertical velocity for later
 
-        if (moveDir.magnitude >= 0.1f)
-        {
+        if (moveDir.magnitude >= 0.1f) {
             float targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg + Cam.eulerAngles.y;
 
-            if (strafeAimTimer <= 0)
-            {
+            if (strafeAimTimer <= 0) {
                 float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, TurnSmoothTime);
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
 
             velocity = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             velocity *= Input.GetKey(KeyCode.LeftShift) ? RunSpeed : Speed; // left shift for running
-        }
-        else if (controller.isGrounded)
-        {
+        } else if (controller.isGrounded) {
             velocity = Vector3.zero;
         }
 
         // snap rotation to cam dir if in strafe mode
-        if (strafeAimTimer > 0)
-        {
+        if (strafeAimTimer > 0) {
             transform.rotation = Quaternion.Euler(0f, Cam.eulerAngles.y, 0f);
         }
 
-        if (controller.isGrounded)
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
+        if (controller.isGrounded) {
+            if (Input.GetKey(KeyCode.Space)) {
                 velocity.y = JumpVelocity;
             }
-        }
-        else
-        {
+        } else {
             velocity.y = yVel; // reset vertical vel
         }
 
@@ -81,8 +67,20 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    public void StrafeMode()
-    {
+    public void StrafeMode() {
         strafeAimTimer = StrafeAimTime;
+    }
+
+    [Server]
+    public void TeleportTo(Vector3 position, Quaternion rotation) {
+        controller.enabled = false;
+        transform.SetPositionAndRotation(position, rotation);
+        controller.enabled = true;
+    }
+
+    [Server]
+    public void TeleportTo(Vector3 position) {
+        // use our current rotation if none is passed
+        TeleportTo(position, transform.rotation);
     }
 }

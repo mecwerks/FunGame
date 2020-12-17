@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotate : MonoBehaviour
-{
+public class Rotate : MonoBehaviour {
     public float speed = 10f;
 
-    void Update()
-    {
+    void Update() {
         transform.Rotate(0, speed * Time.deltaTime, 0);
     }
 }

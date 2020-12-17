@@ -8,27 +8,25 @@ using UnityEngine.Scripting;
 
 //[assembly: AlwaysLinkAssembly]
 
-public class GameManager : Singleton<GameManager>
-{
+public class GameManager : Singleton<GameManager> {
     public GameObject IngameMenuPrefab;
     public Cinemachine.CinemachineFreeLook FreeLookCam;
-    private bool initialized = false;
 
+    public bool isFloorCleared { get; private set; } = true;
+
+    private bool initialized = false;
     private GameObject IngameMenuObject;
 
     protected GameManager() { } // Prevent non-singleton constructor use.
 
-    private void Awake()
-    {
+    private void Awake() {
         gameObject.AddComponent<Consolation.Console>();
 
 #if UNITY_EDITOR 
-        if (__PreloadScene.sceneToLoad > 0)
-        {
+        if (__PreloadScene.sceneToLoad > 0) {
             Debug.Log("Returning again to the scene: " + __PreloadScene.sceneToLoad);
             SceneManager.LoadScene(__PreloadScene.sceneToLoad);
-        }
-        else
+        } else
 #endif
         {
             SceneManager.LoadScene(1);
@@ -41,8 +39,7 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(IngameMenuObject);
     }
 
-    public void SetupLocalPlayer(GameObject localPlayer, Transform lookAtTarget)
-    {
+    public void SetupLocalPlayer(GameObject localPlayer, Transform lookAtTarget) {
         Transform camTransform = FindObjectOfType<Camera>().transform;
         localPlayer.GetComponent<PlayerMovement>().Cam = camTransform;
         localPlayer.GetComponent<PlayerAttack>().Cam = camTransform;

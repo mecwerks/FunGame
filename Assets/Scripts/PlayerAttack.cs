@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : NetworkBehaviour
-{
+public class PlayerAttack : NetworkBehaviour {
     public Transform Cam;
     public GameObject Projectile;
     public Transform ProjectilePosition;
@@ -16,10 +15,8 @@ public class PlayerAttack : NetworkBehaviour
     [SyncVar]
     private float attackTime = 0;
 
-    private void Start()
-    {
-        if (!isLocalPlayer)
-        {
+    private void Start() {
+        if (!isLocalPlayer) {
             return;
         }
 
@@ -27,39 +24,31 @@ public class PlayerAttack : NetworkBehaviour
         dmgable = GetComponent<Damageable>();
     }
 
-    private void Update()
-    {
-        if (!isLocalPlayer)
-        {
+    private void Update() {
+        if (!isLocalPlayer) {
             return;
         }
 
         attackTime -= Time.deltaTime;
 
-        if (dmgable.health <= 0)
-        {
+        if (dmgable.health <= 0) {
             return;
         }
 
-        if (attackTime > 0)
-        {
+        if (attackTime > 0) {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
             FireProjectile();
             movement.StrafeMode();
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
+        } else if (Input.GetKeyDown(KeyCode.Mouse1)) {
             Stab();
         }
     }
 
     [Command]
-    void FireProjectile()
-    {
+    void FireProjectile() {
         // need to make this go towards where the camera is pointing
         GameObject go = Instantiate(Projectile, ProjectilePosition.position, ProjectilePosition.rotation);
         NetworkServer.Spawn(go);
@@ -67,8 +56,7 @@ public class PlayerAttack : NetworkBehaviour
     }
 
     [Command]
-    void Stab()
-    {
+    void Stab() {
         Weapon.Attack();
         attackTime = AttackCooldown;
     }

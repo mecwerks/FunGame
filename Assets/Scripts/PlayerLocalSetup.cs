@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class PlayerLocalSetup : NetworkBehaviour
-{
+public class PlayerLocalSetup : NetworkBehaviour {
     public Transform CameraLookAtTarget;
 
-    public override void OnStartClient()
-    {
-        if (isLocalPlayer)
-        {
+    public override void OnStartClient() {
+        if (isLocalPlayer) {
             GameManager.Instance.SetupLocalPlayer(gameObject, CameraLookAtTarget);
         }
     }

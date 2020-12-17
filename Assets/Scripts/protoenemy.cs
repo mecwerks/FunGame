@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class protoenemy : MonoBehaviour
-{
+public class protoenemy : MonoBehaviour {
     public float AttackSpeed = 2f;
     public float AttackSpeed2 = 3f;
     public Transform ProjectileSpawn;
@@ -16,16 +15,13 @@ public class protoenemy : MonoBehaviour
     float attackTime;
     bool secondPhase = false;
 
-    void Start()
-    {
+    void Start() {
         dmgable = GetComponent<Damageable>();
         attackTime = AttackSpeed; // so it doesnt attack right away
     }
 
-    void Update()
-    {
-        if (dmgable.health <= 0)
-        { 
+    void Update() {
+        if (dmgable.health <= 0) {
             // dead
             return;
         }
@@ -35,29 +31,23 @@ public class protoenemy : MonoBehaviour
         targetPos.y = transform.position.y;
         transform.LookAt(targetPos);
 
-        if (dmgable.health <= dmgable.maxHealth / 2)
-        {
+        if (dmgable.health <= dmgable.maxHealth / 2) {
             secondPhase = true;
         }
 
         attackTime -= Time.deltaTime;
 
-        if (attackTime <= 0)
-        {
+        if (attackTime <= 0) {
             float rnd = Random.value;
 
-            if (secondPhase && rnd < 0.5f)
-            {
+            if (secondPhase && rnd < 0.5f) {
                 Vector3 pos = target.position;
 
-                if (Physics.Raycast(pos, -Vector3.up, out RaycastHit hit))
-                {
+                if (Physics.Raycast(pos, -Vector3.up, out RaycastHit hit)) {
                     Destroy(Instantiate(FireObject, hit.point, Quaternion.identity), 6f);
                     attackTime = AttackSpeed2;
                 }
-            }
-            else
-            {
+            } else {
                 Instantiate(Projectile, ProjectileSpawn.position, ProjectileSpawn.rotation);
                 attackTime = AttackSpeed;
             }

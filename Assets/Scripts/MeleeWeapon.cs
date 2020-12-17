@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
-{
+public class MeleeWeapon : MonoBehaviour {
     public int damage = 25;
 
     Animator animator;
 
-    private void Start()
-    {
+    private void Start() {
         animator = GetComponent<Animator>();
     }
 
-    public void Attack()
-    {
+    public void Attack() {
         animator.SetTrigger("Attack");
     }
 
-    void OnTriggerEnter(Collider col)
-    {
+    void OnTriggerEnter(Collider col) {
         Damageable dmgable = col.gameObject.GetComponent<Damageable>();
 
         if (dmgable)

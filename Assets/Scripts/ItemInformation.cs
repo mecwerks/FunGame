@@ -2,7 +2,6 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemInformation", order = 1)]
-class ItemInformation : ScriptableObject
-{
+class ItemInformation : ScriptableObject {
     public int amount;
 }

@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class __PreloadScene
-{
+public class __PreloadScene {
 #if UNITY_EDITOR 
     public static int sceneToLoad = -2;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void LoadPreScene()
-    {
+    static void LoadPreScene() {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        
+
         if (sceneIndex == 0) {
             return;
         }
