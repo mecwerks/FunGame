@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/__preload.unity
     guid: 05fc5292c0e4a1f40a35799a0f1397bc
   - enabled: 1
-    path: Assets/Scenes/Overworld.unity
+    path: Assets/Scenes/Dungeon.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
