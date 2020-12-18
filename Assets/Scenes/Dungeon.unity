@@ -495,6 +495,11 @@ PrefabInstance:
       propertyPath: wanderRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -562,6 +567,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43eb189b79b9b92479057b78b69467c6, type: 3}
+--- !u!114 &566683380 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 682326273}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572029385
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +661,11 @@ PrefabInstance:
         type: 3}
       propertyPath: wanderRadius
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
@@ -821,6 +843,11 @@ PrefabInstance:
       propertyPath: wanderRadius
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -888,6 +915,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43eb189b79b9b92479057b78b69467c6, type: 3}
+--- !u!114 &916743983 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 770311213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &981189797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -904,6 +943,11 @@ PrefabInstance:
         type: 3}
       propertyPath: wanderRadius
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
@@ -1002,6 +1046,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1073508389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 981189797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158609784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1163,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  enemy: {fileID: 467059165}
+  enemies:
+  - {fileID: 467059165}
+  - {fileID: 1073508389}
+  - {fileID: 1600731191}
+  - {fileID: 916743983}
+  - {fileID: 566683380}
   portal: {fileID: 280042332}
 --- !u!114 &1315196119
 MonoBehaviour:
@@ -1361,6 +1422,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1589277889}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1600731191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 482171414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc037bf1eb411e048848346085e937d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1654251083
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: wanderRadius
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311754, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: destroyOnDeath
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
