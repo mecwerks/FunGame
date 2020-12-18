@@ -12,11 +12,7 @@ public class Damageable : NetworkBehaviour {
 
     public int health { get => _health; }
 
-    private void Start() {
-        if (!isServer) {
-            return;
-        }
-
+    private void Awake() {
         _health = maxHealth;
     }
 

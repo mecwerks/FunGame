@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f48effef075622243bd9a4f99e5d6770, type: 2}
 --- !u!1 &31932151
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &86180078
 Transform:
@@ -389,7 +389,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &438981730
 MeshCollider:
@@ -485,6 +485,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -625,6 +635,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -791,6 +811,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -865,6 +895,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1150,7 +1190,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1537530650
 Transform:
@@ -1244,7 +1284,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1589277890
 Transform:
@@ -1446,6 +1486,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306654544888311753, guid: 43eb189b79b9b92479057b78b69467c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8306654544888311755, guid: 43eb189b79b9b92479057b78b69467c6,
         type: 3}
       propertyPath: m_RootOrder
