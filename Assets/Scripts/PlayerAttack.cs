@@ -8,6 +8,7 @@ public class PlayerAttack : NetworkBehaviour {
     public GameObject Projectile;
     public Transform ProjectilePosition;
     public float AttackCooldown = 0.5f;
+    public LayerMask enemyHitMask;
 
     private NetworkAnimator animator;
     private PlayerMovement movement;
@@ -59,6 +60,12 @@ public class PlayerAttack : NetworkBehaviour {
 
     [Command]
     void Stab() {
+        Collider[] hits = Physics.OverlapSphere(transform.position, 2f, enemyHitMask);
+
+        foreach(var hit in hits) {
+            Hit(hit, 25);
+        }
+
         attackTime = AttackCooldown;
     }
 

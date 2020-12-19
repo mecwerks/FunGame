@@ -449,6 +449,9 @@ MonoBehaviour:
     type: 3}
   ProjectilePosition: {fileID: 2147147670}
   AttackCooldown: 0.5
+  enemyHitMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &-7744356962133105482
 MonoBehaviour:
   m_ObjectHideFlags: 0
