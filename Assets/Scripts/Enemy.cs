@@ -12,6 +12,8 @@ public class Enemy : NetworkBehaviour {
 
     public float wanderRadius;
     public float wanderTimer;
+    public MeshRenderer meshRend;
+    public Material deadMaterial;
 
     private Damageable dmgable;
     private NavMeshAgent navAgent;
@@ -48,6 +50,7 @@ public class Enemy : NetworkBehaviour {
                 }
                 break;
             case EnemyState.Dead:
+                meshRend.material = deadMaterial;
                 break;
             default:
                 break;

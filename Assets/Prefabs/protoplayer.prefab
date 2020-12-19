@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1015044647}
   - component: {fileID: 1015044646}
   - component: {fileID: 1015044649}
-  - component: {fileID: 1015044650}
   m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
@@ -114,19 +113,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1015044650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015044644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb0885f5dcf6ef43b2001e53fa14fca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
 --- !u!1 &1449911055
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +301,7 @@ GameObject:
   - component: {fileID: -764535835507767534}
   - component: {fileID: -5050276608520418034}
   - component: {fileID: -2686894887516003496}
+  - component: {fileID: 937383645341773449}
   m_Layer: 0
   m_Name: protoplayer
   m_TagString: Player
@@ -461,7 +448,6 @@ MonoBehaviour:
   Projectile: {fileID: 82762498749810492, guid: 30d95f0902547a9438ef58cadd3c611c,
     type: 3}
   ProjectilePosition: {fileID: 2147147670}
-  Weapon: {fileID: 1015044650}
   AttackCooldown: 0.5
 --- !u!114 &-7744356962133105482
 MonoBehaviour:
@@ -524,3 +510,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883d680090f037f489b42eb3298603ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+--- !u!114 &937383645341773449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987588878862291381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 1015044649}

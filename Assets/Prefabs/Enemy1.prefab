@@ -99,6 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  wanderRadius: 5
+  wanderTimer: 5
+  meshRend: {fileID: 8306654545706134101}
+  deadMaterial: {fileID: 2100000, guid: 54690478bdd13b9478b37e1f5eea472e, type: 2}
 --- !u!114 &8306654544888311754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +199,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a8dc92fd15c7d5e4a9bf40cbd3f6c17f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -7,9 +7,9 @@ public class PlayerAttack : NetworkBehaviour {
     public Transform Cam;
     public GameObject Projectile;
     public Transform ProjectilePosition;
-    public MeleeWeapon Weapon;
     public float AttackCooldown = 0.5f;
 
+    private NetworkAnimator animator;
     private PlayerMovement movement;
     private Damageable dmgable;
     [SyncVar]
@@ -20,6 +20,7 @@ public class PlayerAttack : NetworkBehaviour {
             return;
         }
 
+        animator = GetComponent<NetworkAnimator>();
         movement = GetComponent<PlayerMovement>();
         dmgable = GetComponent<Damageable>();
     }
@@ -43,6 +44,7 @@ public class PlayerAttack : NetworkBehaviour {
             FireProjectile();
             movement.StrafeMode();
         } else if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            animator.SetTrigger("Attack");
             Stab();
         }
     }
@@ -57,7 +59,14 @@ public class PlayerAttack : NetworkBehaviour {
 
     [Command]
     void Stab() {
-        Weapon.Attack();
         attackTime = AttackCooldown;
+    }
+
+    [ServerCallback]
+    public void Hit(Collider col, int damage) {
+        Damageable dmgable = col.gameObject.GetComponent<Damageable>();
+
+        if (dmgable)
+            dmgable.Damage(damage);
     }
 }
