@@ -412,7 +412,7 @@ MonoBehaviour:
   RunSpeed: 15
   JumpVelocity: 8
   Gravity: 20
-  TurnSmoothTime: 0.1
+  TurnSmoothTime: 0.035
   StrafeAimTime: 1
 --- !u!114 &1407049847
 MonoBehaviour:
