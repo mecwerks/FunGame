@@ -71,16 +71,14 @@ public class PlayerMovement : NetworkBehaviour {
         strafeAimTimer = StrafeAimTime;
     }
 
-    [Server]
+    [TargetRpc]
     public void TeleportTo(Vector3 position, Quaternion rotation) {
+        if (!isLocalPlayer) {
+            return;
+        }
+
         controller.enabled = false;
         transform.SetPositionAndRotation(position, rotation);
         controller.enabled = true;
-    }
-
-    [Server]
-    public void TeleportTo(Vector3 position) {
-        // use our current rotation if none is passed
-        TeleportTo(position, transform.rotation);
     }
 }
