@@ -5,6 +5,7 @@ using Mirror;
 
 public class FloorManager : NetworkBehaviour {
     public Damageable[] enemies;
+    public Item[] items;
     public FloorChangePortal portal;
 
     void Update() {
@@ -18,7 +19,7 @@ public class FloorManager : NetworkBehaviour {
                 }
             }
 
-            if (!enemyAlive) {
+            if (!enemyAlive && items.Length == 0) {
                 portal.active = true;
             }
         }

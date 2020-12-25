@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Mirror;
 
-class Item : NetworkBehaviour {
+public class Item : NetworkBehaviour {
     public ItemInformation information;
 }
